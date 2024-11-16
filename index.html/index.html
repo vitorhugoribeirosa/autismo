@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Inicial</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+        }
+
+        .color1 { background-color: #1b8db7; }
+        .color2 { background-color: #3aa6c9; }
+        .color3 { background-color: #59bfdb; }
+        .color4 { background-color: #77d7ed; }
+        .color5 { color: #96f0ff; }
+
+        .menu {
+            background-color: #1b8db7;
+            padding: 10px;
+        }
+
+        .menu ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu ul li {
+            margin: 0 15px;
+        }
+
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+        }
+
+        .menu ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .background {
+            background-image: url('img/primeia2.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 48px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        #start-btn {
+            padding: 15px 30px;
+            font-size: 22px;
+            background-color: #59bfdb;
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        #start-btn:hover {
+            background-color: #77d7ed;
+            transform: scale(1.1);
+        }
+
+        #faq {
+            padding: 50px 20px;
+            background-color: #3aa6c9;
+            color: white;
+            text-align: center;
+        }
+
+        #faq h2 {
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-item h3 {
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .faq-item h3:hover {
+            color: #96f0ff;
+        }
+
+        .faq-item p {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 10px;
+            color: #fff;
+        }
+
+        #sobre {
+            padding: 50px 20px;
+            background-color: #77d7ed;
+            text-align: center;
+            animation: slide-in 1.5s ease-out;
+        }
+
+        .creator-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 20px auto;
+            animation: slide-in 1.5s ease-out;
+        }
+
+        .creator-photo img {
+            width: 100%;
+        }
+
+        @keyframes slide-in {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 32px;
+            }
+
+            #start-btn {
+                padding: 10px 20px;
+                font-size: 18px;
+            }
+
+            .menu ul {
+                flex-direction: column;
+            }
+
+            .menu ul li {
+                margin: 10px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            .content {
+                padding: 0 20px;
+            }
+
+            #start-btn {
+                width: 100%;
+                padding: 15px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Menu de Navegação -->
+    <nav class="menu color1">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="sugestao.html">Sugestão</a></li>
+            <li><a href="servico.html">Serviços</a></li>
+            <li><a href="questionario.html">Questionário</a></li>
+            <li><a href="contato.html">Contato</a></li>
+        </ul>
+    </nav>
+
+    <!-- Imagem de Fundo e Conteúdo Principal -->
+    <div class="background">
+        <div class="content">
+            <h1>SERA QUE E AUTISAMO?</h1>
+            <button id="start-btn" class="color3" onclick="window.location.href='questionario.html'">Iniciar Questionário</button>
+        </div>
+    </div>
+
+    <!-- Perguntas Frequentes -->
+    <section id="faq" class="color2">
+        <h2>Perguntas Frequentes</h2>
+
+        <div class="faq-item">
+            <h3>O que é o autismo?</h3>
+            <p>O autismo, ou Transtorno do Espectro Autista (TEA), é uma condição neurológica caracterizada por desafios no desenvolvimento social, comunicacional e comportamental.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Quais são os sinais mais comuns do autismo?</h3>
+            <p>Os sinais mais comuns incluem dificuldade de interação social, comunicação limitada, comportamentos repetitivos e apego a rotinas específicas.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Como o diagnóstico de autismo é realizado?</h3>
+            <p>O diagnóstico é feito por profissionais especializados por meio de avaliações comportamentais e entrevistas com familiares.</p>
+        </div>
+
+        <div class="faq-item">
+            <h3>O autismo tem cura?</h3>
+            <p>Não há cura, mas intervenções e terapias podem ajudar a melhorar a qualidade de vida e promover o desenvolvimento.</p>
+        </div>
+    </section>
+
+    <!-- Sobre o Criador -->
+    <section id="sobre" class="color4">
+        <h2>Sobre o Criador</h2>
+        <div class="creator-photo">
+            <img src="img/44.jpeg" alt="Foto do Criador">
+        </div>
+        <p>Este site foi criado por Vitor, com o propósito de aumentar a conscientização sobre o autismo.</p>
+    </section>
+
+    <script>
+        // Exibir e ocultar respostas com animação suave
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', () => {
+                const answer = item.nextElementSibling;
+                if (answer.style.maxHeight) {
+                    answer.style.maxHeight = null; // Ocultar
+                } else {
+                    answer.style.maxHeight = answer.scrollHeight + "px"; // Expandir
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -27,7 +27,6 @@
             z-index: 1000;
             background-color: rgba(27, 141, 183, 0.9);
             backdrop-filter: blur(5px);
-            transition: background 0.3s ease;
         }
 
         .navbar a {
@@ -36,11 +35,61 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
-            transition: color 0.3s ease;
         }
 
-        .navbar a:hover {
-            color: #FFEB3B;
+        /* Botão de três pontinhos para dispositivos móveis */
+        .menu-toggle {
+            display: none;
+            font-size: 32px;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            top: 10px; /* Ajustado para ficar mais para cima */
+            left: 20px; /* Mantendo o botão à esquerda */
+            background: none;
+            border: none;
+        }
+
+        /* Menu suspenso para mobile */
+        .menu-links {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            background-color: rgba(27, 141, 183, 0.9);
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+        }
+
+        .menu-links a {
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Estilo para menu e botão no mobile */
+        @media (max-width: 768px) {
+            .navbar a {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+                transition: none; /* Removendo qualquer efeito de transição */
+            }
+
+            .menu-links.hidden {
+                display: none;
+            }
+
+            .menu-links {
+                display: flex;
+            }
         }
 
         form {
@@ -68,12 +117,6 @@
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .pergunta-container:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .pergunta-container label {
@@ -102,12 +145,10 @@
             font-size: 1.2em;
             margin: 30px auto;
             display: block;
-            transition: background-color 0.3s ease, transform 0.2s;
         }
 
         button:hover {
             background-color: #3aa6c9;
-            transform: scale(1.05);
         }
 
         #resultado {
@@ -117,14 +158,6 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-
-        #resultado.mostrar {
-            opacity: 1;
-            transform: scale(1);
         }
     </style>
 </head>
@@ -136,11 +169,22 @@
         <a href="servico.html">Serviços</a>
         <a href="questionario.html">Questionário</a>
         <a href="contato.html">Contato</a>
+
+        <!-- Botão de três pontinhos para dispositivos móveis -->
+        <button class="menu-toggle" onclick="toggleMenu()">&#x22EE;</button>
+    </div>
+
+    <!-- Menu suspenso para dispositivos móveis -->
+    <div class="menu-links hidden">
+        <a href="index.html">Início</a>
+        <a href="sugestao.html">Sugestão</a>
+        <a href="servico.html">Serviços</a>
+        <a href="questionario.html">Questionário</a>
+        <a href="contato.html">Contato</a>
     </div>
 
     <form id="questionario">
         <h2>Questionário sobre Autismo (M-CHAT)</h2>
-
         <!-- Espaço para as perguntas -->
         <div class="pergunta-container">
             <label for="pergunta1">1. A criança demonstra interesse em brincar com outros, como correr ou brincar de esconde-esconde?</label>
@@ -302,14 +346,18 @@
             <label for="nao20">Não</label>
         </div>
 
-        <!-- Copie e cole o bloco acima para adicionar mais perguntas -->
-        
         <button type="button" onclick="calcularResultado()">Enviar Respostas</button>
     </form>
 
     <div id="resultado"></div>
 
     <script>
+        // Alterna o menu de navegação no mobile
+        function toggleMenu() {
+            const menu = document.querySelector('.menu-links');
+            menu.classList.toggle('hidden'); // Alterna a classe que esconde/exibe o menu
+        }
+
         function calcularResultado() {
             let totalSim = 0; // Pontos acumulados para "sim"
             const totalPerguntas = 20; // Total de perguntas

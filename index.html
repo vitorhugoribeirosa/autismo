@@ -16,7 +16,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 15px;
+            padding: 20px; /* Aumentei um pouco o padding para tornar a barra azul maior */
             position: fixed;
             top: 0;
             width: 100%;
@@ -39,39 +39,66 @@
             color: #FFEB3B;
         }
 
-        body, html {
-            height: 100%;
+        /* Botão de três pontinhos para dispositivos móveis */
+        .menu-toggle {
+            display: none; /* Escondido por padrão */
+            font-size: 32px; /* Tamanho maior */
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            left: 20px; /* Botão movido para o lado esquerdo */
+            background: none;
+            border: none;
         }
 
-        .color1 { background-color: #1b8db7; }
-        .color2 { background-color: #3aa6c9; }
-        .color3 { background-color: #59bfdb; }
-        .color4 { background-color: #77d7ed; }
-        .color5 { color: #96f0ff; }
-
-        .menu {
-            background-color: #1b8db7;
-            padding: 10px;
+        /* Menu suspenso para mobile */
+        .menu-links {
+            display: none; /* Escondido por padrão */
+            flex-direction: column;
+            position: fixed; /* Fixo, não se move com o scroll */
+            top: 60px; /* Alinhado com a barra azul */
+            left: 20px; /* Alinhado com o botão de três pontinhos */
+            background-color: rgba(27, 141, 183, 0.9);
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
         }
 
-        .menu ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-
-        .menu ul li {
-            margin: 0 15px;
-        }
-
-        .menu ul li a {
+        .menu-links a {
+            padding: 10px 15px;
             color: white;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .menu ul li a:hover {
-            text-decoration: underline;
+        .menu-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Estilo para menu e botão no mobile */
+        @media (max-width: 768px) {
+            .navbar a {
+                display: none; /* Esconde os links da navbar em dispositivos móveis */
+            }
+
+            .menu-toggle {
+                display: block; /* Mostra o botão de três pontinhos */
+            }
+
+            .menu-links.hidden {
+                display: none; /* Esconde o menu inicialmente */
+            }
+
+            .menu-links {
+                display: flex; /* Permite que o menu seja exibido ao alternar */
+            }
+        }
+
+        body, html {
+            height: 100%;
         }
 
         .background {
@@ -176,41 +203,6 @@
             }
         }
 
-        /* Media Queries para Responsividade */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 32px;
-            }
-
-            #start-btn {
-                padding: 10px 20px;
-                font-size: 18px;
-            }
-
-            .menu ul {
-                flex-direction: column;
-            }
-
-            .menu ul li {
-                margin: 10px 0;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 28px;
-            }
-
-            .content {
-                padding: 0 20px;
-            }
-
-            #start-btn {
-                width: 100%;
-                padding: 15px;
-                font-size: 16px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -221,8 +213,19 @@
         <a href="servico.html">Serviços</a>
         <a href="questionario.html">Questionário</a>
         <a href="contato.html">Contato</a>
+
+        <!-- Botão de três pontinhos para dispositivos móveis -->
+        <button class="menu-toggle" onclick="toggleMenu()">&#x22EE;</button>
     </div>
 
+    <!-- Menu suspenso para dispositivos móveis -->
+    <div class="menu-links hidden">
+        <a href="index.html">Início</a>
+        <a href="sugestao.html">Sugestão</a>
+        <a href="servico.html">Serviços</a>
+        <a href="questionario.html">Questionário</a>
+        <a href="contato.html">Contato</a>
+    </div>
 
     <!-- Imagem de Fundo e Conteúdo Principal -->
     <div class="background">
@@ -278,6 +281,12 @@
                 }
             });
         });
+
+        // Alterna o menu de navegação no mobile
+        function toggleMenu() {
+            const menu = document.querySelector('.menu-links');
+            menu.classList.toggle('hidden'); // Alterna a classe que esconde/exibe o menu
+        }
     </script>
 </body>
 </html>

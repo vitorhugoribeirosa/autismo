@@ -31,13 +31,13 @@
         .navbar {
             width: 100%;
             background-color: rgba(27, 141, 183, 0.8);
-            padding: 15px 0;
+            padding: 25px 0; /* Aumentei a altura da parte azul */
             position: fixed;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            align-items: center;
         }
 
         .navbar a {
@@ -46,26 +46,68 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.2em;
-            transition: color 0.3s ease;
         }
 
-        .navbar a:hover {
-            color: #FFEB3B;
+        /* Botão de três pontinhos para dispositivos móveis */
+        .menu-toggle {
+            display: none;
+            font-size: 32px;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            top: 5px; /* Ajustei um pouco para cima */
+            left: 20px; /* Mantendo o botão à esquerda */
+            background: none;
+            border: none;
+        }
+
+        /* Menu suspenso para mobile */
+        .menu-links {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            background-color: rgba(27, 141, 183, 0.9);
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+        }
+
+        .menu-links a {
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Estilo para menu e botão no mobile */
+        @media (max-width: 768px) {
+            .navbar a {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .menu-links.hidden {
+                display: none;
+            }
+
+            .menu-links {
+                display: flex;
+            }
         }
 
         /* Seções */
         .section {
             padding: 8px 90px;
             text-align: center;
-            margin: 70px 100px 8px;
+            margin: 90px 100px 8px; /* Ajustei o topo da margem para acomodar a altura aumentada da navbar */
             border-radius: 15px;
-            transition: all 0.4s ease;
-        }
-
-        .section:hover {
-            transform: scale(1.01);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
         }
 
         /* Banner */
@@ -73,20 +115,7 @@
             background-color: rgba(119, 215, 237, 0.9);
             color: black;
             padding: 30px 20px;
-            margin-top: 90px;
             border-radius: 0 0 30px 30px;
-            
-        }
-
-        .banner:hover {
-            transform: scale(1.01);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            transition: all 0.4s ease;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         /* Rodapé */
@@ -101,10 +130,6 @@
         .footer a {
             color: #FFEB3B;
             text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
         }
 
         /* Responsividade */
@@ -152,6 +177,18 @@
         <a href="servico.html">Serviços</a>
         <a href="questionario.html">Questionário</a>
         <a href="contato.html">Contato</a>
+
+        <!-- Botão de três pontinhos para dispositivos móveis -->
+        <button class="menu-toggle" onclick="toggleMenu()">&#x22EE;</button>
+    </div>
+
+    <!-- Menu suspenso para dispositivos móveis -->
+    <div class="menu-links hidden">
+        <a href="index.html">Início</a>
+        <a href="sugestao.html">Sugestão</a>
+        <a href="servico.html">Serviços</a>
+        <a href="questionario.html">Questionário</a>
+        <a href="contato.html">Contato</a>
     </div>
 
     <!-- Banner -->
@@ -188,5 +225,12 @@
         <p><a href="politica-privacidade.html">Política de Privacidade</a> | <a href="termos-uso.html">Termos de Uso</a></p>
     </div>
 
+    <script>
+        // Alterna o menu de navegação no mobile
+        function toggleMenu() {
+            const menu = document.querySelector('.menu-links');
+            menu.classList.toggle('hidden'); // Alterna a classe que esconde/exibe o menu
+        }
+    </script>
 </body>
 </html>

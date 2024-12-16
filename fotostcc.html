@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Fotos</title>
+    <style>
+        /* Definindo as cores conforme solicitado */
+        .color1 { background-color: #622824; }
+        .color2 { background-color: #2f0618; }
+        .color3 { background-color: #412a9c; }
+        .color4 { background-color: #1b66ff; }
+        .color5 { color: #00cef5; }
+
+        /* Estilos Gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1e1e1e;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: #622824;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        header nav a:hover {
+            color: #00cef5;
+        }
+
+        /* Estilo da Introdução */
+        .intro {
+            padding: 50px 10%;
+            text-align: center;
+            background: #2f0618;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro img {
+            width: 150px; /* Tamanho da imagem */
+            height: auto;
+            margin-bottom: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .intro h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #00cef5;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        /* Animação da imagem */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Seção de Texto Explicativo */
+        .text-explanation {
+            padding: 50px 10%;
+            background-color: #412a9c;
+            color: #fff;
+            text-align: center;
+        }
+
+        .text-explanation h2 {
+            font-size: 2.5rem;
+            color: #00cef5;
+            margin-bottom: 20px;
+        }
+
+        .text-explanation p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        /* Galeria */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 50px 10%;
+            background: #1b66ff;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            transition: transform 0.4s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item .description {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            font-size: 1.1rem;
+            transform: translateY(100%);
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover .description {
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #622824;
+            color: #777;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #00cef5;
+            text-decoration: none;
+        }
+
+        /* Menu de Navegação */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #2f0618;
+            padding: 10px 0;
+        }
+
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #00cef5;
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- Menu de Navegação -->
+    <div class="navbar">
+        <a href="index.html">Início</a>
+        <a href="sugestao.html">Sugestão</a>
+        <a href="servico.html">Serviços</a>
+        <a href="questionario.html">Questionário</a>
+        <a href="contato.html">Contato</a>
+    </div>
+
+    <section class="intro">
+        <h1>Galeria de Fotos</h1>
+        <p>Confira as imagens do nosso projeto, com descrições detalhadas e um visual impressionante.</p>
+    </section>
+
+    <!-- Seção de Texto Explicativo -->
+    <section class="text-explanation">
+        <h2>Explicação do Projeto</h2>
+        <p>O projeto "Será que é Autismo?" foi desenvolvido por Vítor Hugo Ribeiro Sa, como parte de seu trabalho de conclusão do curso técnico em Informática no CEDUP Renato Ramos da Silva, em Lages, Santa Catarina. O principal objetivo da plataforma é fornecer uma ferramenta gratuita, acessível e de fácil utilização para ajudar pais, responsáveis e profissionais da educação e saúde a identificarem sinais iniciais do Transtorno do Espectro Autista (TEA) em crianças. Através de um questionário baseado no M-CHAT (Modified Checklist for Autism in Toddlers), o site oferece uma triagem simples e prática para detectar características associadas ao autismo.
+
+            O autismo é uma condição neurológica que afeta milhões de pessoas ao redor do mundo. O diagnóstico precoce é fundamental para garantir que as crianças recebam intervenções e terapias adequadas, que podem fazer uma grande diferença no desenvolvimento delas. No entanto, muitas famílias enfrentam dificuldades para acessar diagnósticos profissionais, especialmente em comunidades de menor renda ou em áreas onde os recursos são limitados. Esse foi o principal motivador para a criação do "Será que é Autismo?": fornecer uma ferramenta inicial de triagem, capaz de orientar as famílias e os profissionais da educação de forma simples, rápida e gratuita.
+            
+            O site oferece um questionário composto por 20 perguntas, adaptadas do M-CHAT, que abordam diversos comportamentos e sinais de desenvolvimento que podem estar associados ao autismo. Ao responder ao questionário, o usuário recebe uma pontuação que indica a probabilidade da criança apresentar características autistas, além de orientações sobre o que fazer a seguir, como procurar um profissional para uma avaliação mais detalhada. Vale destacar que o site não substitui um diagnóstico médico, mas serve como um primeiro passo para aqueles que desejam entender melhor os sinais de autismo.
+            
+            O projeto foi desenvolvido utilizando tecnologias como HTML, CSS, JavaScript e PHP, com o intuito de garantir que fosse acessível e fácil de usar para qualquer pessoa, independentemente do seu nível de conhecimento técnico. A interface do site foi pensada de maneira intuitiva, inspirada em plataformas populares, como o catálogo da Netflix, para que qualquer pessoa, mesmo sem experiência com tecnologia, pudesse navegar com facilidade. O design simples e funcional garante que o foco permaneça no conteúdo, facilitando a compreensão das informações.
+            
+            A criação desse site também reflete a experiência pessoal de Vítor Hugo, que, sendo uma pessoa com deficiência, tem uma visão sensível sobre as dificuldades que muitas famílias enfrentam no processo de diagnóstico e acompanhamento do autismo. O site busca, assim, ser uma ferramenta inclusiva, com a missão de democratizar o acesso à informação e facilitar o encaminhamento para profissionais especializados.
+            
+            Com o tempo, o projeto tem planos de expansão. A ideia é incluir novos recursos e funcionalidades, como informações adicionais sobre tratamentos, terapias e estratégias educacionais, bem como orientações para os profissionais da saúde e da educação. Há também a intenção de traduzir o site para diferentes idiomas, aumentando seu alcance e impacto.
+            
+            O "Será que é Autismo?" não é apenas uma plataforma digital, mas uma iniciativa que visa transformar a maneira como o autismo é percebido e tratado nas comunidades. Através dessa ferramenta, o projeto busca conscientizar e empoderar as famílias, permitindo-lhes tomar decisões informadas sobre o acompanhamento e o cuidado de suas crianças. Ao proporcionar acesso a informações precisas e de fácil entendimento, o site se propõe a ser um aliado no processo de identificação precoce do autismo e a promover uma maior inclusão e acolhimento para as pessoas com TEA.
+            
+            </p>
+    </section>
+
+    <section class="gallery">
+        <div class="gallery-item">
+            <img src="img/avaliadores.jpeg" alt="Foto 1">
+            <div class="description">Esta é a descrição da primeira foto.</div>
+        </div>
+        <div class="gallery-item">
+            <img src="img/com a professora.jpeg" alt="Foto 2">
+            <div class="description">Esta é a descrição da segunda foto.</div>
+        </div>
+        <div class="gallery-item">
+            <img src="img/sosinho.jpeg" alt="Foto 3">
+            <div class="description">Esta é a descrição da terceira foto.</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 - Todos os direitos reservados</p>
+    </footer>
+</body>
+
+</html>

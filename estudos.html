@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudos Interativos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(27, 141, 183, 0.9);
+            backdrop-filter: blur(5px);
+        }
+
+        .navbar a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #FFEB3B;
+        }
+
+        /* Botão de três pontinhos para dispositivos móveis */
+        .menu-toggle {
+            display: none;
+            font-size: 32px;
+            color: white;
+            cursor: pointer;
+            position: absolute;
+            top: 5px;
+            left: 30px;
+            background: none;
+            border: none;
+        }
+
+        /* Menu suspenso para mobile */
+        .menu-links {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            background-color: rgba(27, 141, 183, 0.9);
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+        }
+
+        .menu-links a {
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-links a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .navbar a {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .menu-links.hidden {
+                display: none;
+            }
+
+            .menu-links {
+                display: flex;
+            }
+        }
+
+        body, html {
+            height: 100%;
+            background: #f0f0f0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 120px auto 40px;
+            padding: 20px;
+        }
+
+        .timer {
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1b8db7;
+        }
+
+        .controls button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3aa6c9;
+            border: none;
+            color: white;
+            transition: background-color 0.3s;
+        }
+
+        .controls button:hover {
+            background-color: #59bfdb;
+        }
+
+        .note-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            animation: fade-in 0.5s ease-out;
+        }
+
+        .note-form textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin-bottom: 10px;
+            resize: vertical;
+        }
+
+        .notes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .note {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+            animation: fade-in 0.5s ease-out;
+        }
+
+        .note img {
+            max-width: 100%;
+            margin-top: 10px;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">Início</a>
+        <a href="sugestao.html">Sugestão</a>
+        <a href="servico.html">Serviços</a>
+        <a href="questionario.html">Questionário</a>
+        <a href="contato.html">Contato</a>
+        <a href="fotostcc.html">Fotos tcc</a>
+        <a href="estudos.html">Estudos</a>
+    </nav>
+
+    <!-- Botão de três pontinhos para dispositivos móveis -->
+    <button class="menu-toggle" onclick="toggleMenu()">&#x22EE;</button>
+    
+    <!-- Menu suspenso para dispositivos móveis -->
+    <div class="menu-links hidden">
+        <a href="index.html">Início</a>
+        <a href="sugestao.html">Sugestão</a>
+        <a href="servico.html">Serviços</a>
+        <a href="questionario.html">Questionário</a>
+        <a href="contato.html">Contato</a>
+        <a href="estudos.html">Estudos</a>
+    </div>
+
+    <div class="container">
+        <div class="timer" id="timer">00:00:00</div>
+        <div class="controls">
+            <button onclick="startTimer()">Iniciar</button>
+            <button onclick="pauseTimer()">Pausar</button>
+            <button onclick="resetTimer()">Resetar</button>
+        </div>
+
+        <form class="note-form" onsubmit="saveNote(event)">
+            <textarea id="noteText" placeholder="Suas anotações..." required></textarea>
+            <input type="file" id="noteImage" accept="image/*">
+            <button type="submit">Salvar</button>
+        </form>
+
+        <div class="notes" id="notes"></div>
+    </div>
+
+    <script>
+        // Timer
+        let timerInterval;
+        let totalSeconds = 0;
+
+        function updateTimer() {
+            totalSeconds++;
+            const hours = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+            const minutes = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+            const seconds = String(totalSeconds % 60).padStart(2, '0');
+            document.getElementById('timer').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function startTimer() {
+            if (!timerInterval) {
+                timerInterval = setInterval(updateTimer, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+        }
+
+        function resetTimer() {
+            pauseTimer();
+            totalSeconds = 0;
+            document.getElementById('timer').textContent = '00:00:00';
+        }
+
+        // Notes handling
+        function saveNote(event) {
+            event.preventDefault();
+            const text = document.getElementById('noteText').value;
+            const fileInput = document.getElementById('noteImage');
+            const note = { text: text, time: new Date().toISOString(), image: null };
+
+            if (fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    note.image = reader.result;
+                    storeNote(note);
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                storeNote(note);
+            }
+
+            document.getElementById('noteText').value = '';
+            fileInput.value = '';
+        }
+
+        function storeNote(note) {
+            const notes = JSON.parse(localStorage.getItem('studyNotes') || '[]');
+            notes.push(note);
+            localStorage.setItem('studyNotes', JSON.stringify(notes));
+            displayNotes();
+        }
+
+        function displayNotes() {
+            const notesContainer = document.getElementById('notes');
+            notesContainer.innerHTML = '';
+            const notes = JSON.parse(localStorage.getItem('studyNotes') || '[]');
+            notes.forEach(n => {
+                const div = document.createElement('div');
+                div.className = 'note';
+                const date = new Date(n.time).toLocaleString();
+                div.innerHTML = `<strong>${date}</strong><p>${n.text}</p>`;
+                if (n.image) {
+                    const img = document.createElement('img');
+                    img.src = n.image;
+                    div.appendChild(img);
+                }
+                notesContainer.appendChild(div);
+            });
+        }
+
+        // Mobile menu
+        function toggleMenu() {
+            const menu = document.querySelector('.menu-links');
+            menu.classList.toggle('hidden');
+        }
+
+        displayNotes();
+    </script>
+</body>
+</html>

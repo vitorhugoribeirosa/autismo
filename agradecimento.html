@@ -6,49 +6,92 @@
     <title>Agradecimento</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #f0f8ff, #e6e6fa);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: var(--text-color);
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fff;
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        :root {
+            --bg-color: #020617;
+            --surface-color: rgba(15, 23, 42, 0.6);
+            --text-color: #e2e8f0;
+            --accent-color: #00f3ff;
+            --text-muted: #94a3b8;
+            --border-color: rgba(0, 243, 255, 0.2);
         }
         .container {
             text-align: center;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-            border-radius: 10px;
+            background-color: var(--surface-color);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: 8px;
             width: 80%;
             max-width: 400px;
         }
         h1 {
-            color: #333;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-color);
             margin-bottom: 20px;
         }
         .message {
             font-size: 1.2em;
-            color: #555;
+            color: var(--text-muted);
         }
         .button {
             display: inline-block;
             margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #59bfdb;
-            color: white;
+            padding: 12px 24px;
+            background-color: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 4px;
             transition: background-color 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         .button:hover {
-            background-color: #77d7ed;
+            background-color: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 20px var(--accent-color);
         }
         .footer {
             margin-top: 20px;
             font-size: 0.9em;
             color: #777;
+        }
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                padding: 30px 20px;
+            }
         }
     </style>
 </head>

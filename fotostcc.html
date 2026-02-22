@@ -7,23 +7,46 @@
     <title>Galeria de Fotos</title>
     <style>
         /* Definindo as cores conforme solicitado */
-        .color1 { background-color: #622824; }
-        .color2 { background-color: #2f0618; }
-        .color3 { background-color: #412a9c; }
-        .color4 { background-color: #1b66ff; }
-        .color5 { color: #00cef5; }
+        :root {
+            --bg-color: #020617;
+            --surface-color: rgba(15, 23, 42, 0.6);
+            --text-color: #e2e8f0;
+            --accent-color: #00f3ff;
+            --text-muted: #94a3b8;
+            --border-color: rgba(0, 243, 255, 0.2);
+        }
 
         /* Estilos Gerais */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Scrollbar Personalizada */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #fff;
+            box-shadow: 0 0 10px var(--accent-color);
         }
 
         body {
-            background-color: #1e1e1e;
-            color: #fff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
         header {
@@ -31,37 +54,21 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 10%;
-            background: #622824;
+            background: #0a0a0a;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        header nav {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        header nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
-
-        header nav a:hover {
-            color: #00cef5;
         }
 
         /* Estilo da Introdução */
         .intro {
             padding: 50px 10%;
             text-align: center;
-            background: #2f0618;
+            background: transparent;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            border-bottom: 1px solid var(--border-color);
+            margin-top: 60px; /* Espaço para a navbar fixa */
         }
 
         .intro img {
@@ -74,12 +81,13 @@
         .intro h1 {
             font-size: 3rem;
             margin-bottom: 10px;
-            color: #00cef5;
+            color: var(--accent-color);
+            text-shadow: 0 0 15px var(--accent-color);
         }
 
         .intro p {
             font-size: 1.2rem;
-            color: #ccc;
+            color: var(--text-muted);
         }
 
         /* Animação da imagem */
@@ -98,36 +106,40 @@
         /* Seção de Texto Explicativo */
         .text-explanation {
             padding: 50px 10%;
-            background-color: #412a9c;
-            color: #fff;
+            background-color: rgba(15, 23, 42, 0.4);
+            backdrop-filter: blur(5px);
+            color: var(--text-color);
             text-align: center;
         }
 
         .text-explanation h2 {
             font-size: 2.5rem;
-            color: #00cef5;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-color);
             margin-bottom: 20px;
         }
 
         .text-explanation p {
             font-size: 1.2rem;
-            color: #ccc;
+            color: var(--text-muted);
+            line-height: 1.6;
         }
 
         /* Galeria */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduzido para caber em telas menores */
             gap: 20px;
             padding: 50px 10%;
-            background: #1b66ff;
+            background: transparent;
         }
 
         .gallery-item {
             position: relative;
             overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--border-color);
             transition: transform 0.4s;
         }
 
@@ -135,6 +147,7 @@
             width: 100%;
             height: auto;
             transition: transform 0.5s ease;
+            cursor: pointer;
         }
 
         .gallery-item:hover img {
@@ -142,37 +155,21 @@
         }
 
         .gallery-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .gallery-item .description {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            text-align: center;
-            padding: 15px;
-            font-size: 1.1rem;
-            transform: translateY(100%);
-            transition: transform 0.4s;
-        }
-
-        .gallery-item:hover .description {
-            transform: translateY(0);
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3);
         }
 
         footer {
             text-align: center;
             padding: 20px;
-            background: #622824;
-            color: #777;
+            background: rgba(2, 6, 23, 0.9);
+            color: var(--text-muted);
             font-size: 1rem;
         }
 
         footer a {
-            color: #00cef5;
+            color: var(--accent-color);
             text-decoration: none;
         }
 
@@ -180,20 +177,145 @@
         .navbar {
             display: flex;
             justify-content: center;
-            background-color: #2f0618;
-            padding: 10px 0;
+            align-items: center;
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(2, 6, 23, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 243, 255, 0.1);
         }
 
         .navbar a {
-            color: #fff;
+            color: var(--text-muted);
             text-decoration: none;
-            margin: 0 20px;
-            font-size: 1.2rem;
+            margin: 0 15px;
+            font-size: 1rem;
+            font-weight: 500;
             transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .navbar a:hover {
-            color: #00cef5;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        .navbar a.active {
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-color);
+        }
+
+        /* Botão de três pontinhos para dispositivos móveis */
+        .menu-toggle {
+            display: none;
+            font-size: 32px;
+            color: var(--accent-color);
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            left: auto;
+            background: none;
+            border: none;
+        }
+
+        /* Menu suspenso para mobile */
+        .menu-links {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 60px;
+            left: 20px;
+            background-color: var(--surface-color);
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+            z-index: 1001;
+            border: 1px solid var(--border-color);
+        }
+
+        .menu-links a {
+            padding: 10px 15px;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px;
+            }
+
+            .navbar a { display: none; }
+            .menu-toggle { display: block; }
+            .menu-links.hidden { display: none; }
+            .menu-links { display: flex; }
+            .intro h1 { font-size: 2rem; }
+            
+            .gallery {
+                grid-template-columns: 1fr; /* Uma coluna por vez no mobile */
+                padding: 20px;
+            }
+            
+            .intro, .text-explanation {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Estilos do Lightbox (Modal de Imagem) */
+        .lightbox {
+            display: none; /* Oculto por padrão */
+            position: fixed;
+            z-index: 2000; /* Acima da navbar */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 30px var(--accent-color);
+            border: 1px solid var(--accent-color);
+            animation: fadeIn 0.3s;
+        }
+
+        .lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .lightbox .close:hover {
+            color: var(--accent-color);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 40px;
+            color: var(--accent-color);
+            background: none;
+            border: none;
+            cursor: pointer;
         }
 
     </style>
@@ -201,17 +323,28 @@
 
 <body>
     <!-- Menu de Navegação -->
-    <div class="navbar">
+    <nav class="navbar">
         <a href="index.html">Início</a>
         <a href="sugestao.html">Sugestão</a>
         <a href="servico.html">Serviços</a>
         <a href="questionario.html">Questionário</a>
         <a href="contato.html">Contato</a>
+        <a href="fotostcc.html" class="active">Fotos tcc</a>
+        <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    </nav>
+
+    <div class="menu-links hidden">
+        <button class="close-menu" onclick="toggleMenu()">&times;</button>
+        <a href="index.html">Início</a>
+        <a href="sugestao.html">Sugestão</a>
+        <a href="servico.html">Serviços</a>
+        <a href="questionario.html">Questionário</a>
+        <a href="contato.html">Contato</a>
+        <a href="fotostcc.html">Fotos tcc</a>
     </div>
 
     <section class="intro">
         <h1>Galeria de Fotos</h1>
-        <p>Confira as imagens do nosso projeto, com descrições detalhadas e um visual impressionante.</p>
     </section>
 
     <!-- Seção de Texto Explicativo -->
@@ -237,21 +370,49 @@
     <section class="gallery">
         <div class="gallery-item">
             <img src="img/avaliadores.jpeg" alt="Foto 1">
-            <div class="description">Esta é a descrição da primeira foto.</div>
         </div>
         <div class="gallery-item">
             <img src="img/com a professora.jpeg" alt="Foto 2">
-            <div class="description">Esta é a descrição da segunda foto.</div>
         </div>
         <div class="gallery-item">
             <img src="img/sosinho.jpeg" alt="Foto 3">
-            <div class="description">Esta é a descrição da terceira foto.</div>
         </div>
     </section>
+
+    <!-- Estrutura do Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="close" onclick="closeLightbox(event)">&times;</span>
+        <img id="lightbox-img" src="" alt="Imagem Expandida">
+    </div>
 
     <footer>
         <p>&copy; 2024 - Todos os direitos reservados</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.menu-links').classList.toggle('hidden');
+        }
+
+        // Lógica do Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryImages = document.querySelectorAll('.gallery-item img');
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
+            });
+        });
+
+        function closeLightbox(event) {
+            // Fecha se clicar no botão X ou fora da imagem (no fundo escuro)
+            if (event.target === lightbox || event.target.classList.contains('close')) {
+                lightbox.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 
 </html>

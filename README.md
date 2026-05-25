@@ -1,5 +1,9 @@
 # Será que é Autismo?
 
+<p align="center">
+  <img src="./img/PROJETO%20SERA%20UQ%20E%20E%20ALTISMP.jfif" alt="Imagem do projeto Será que é Autismo" width="720">
+</p>
+
 Site informativo criado por **Vitor Hugo Ribeiro Sá** para auxiliar famílias em uma triagem inicial de sinais relacionados ao Transtorno do Espectro Autista (TEA).
 
 O projeto apresenta informações sobre autismo, perguntas frequentes, serviços, contato, fotos do TCC e um questionário inicial. A proposta é facilitar o acesso à informação e incentivar a busca por avaliação profissional quando necessário.

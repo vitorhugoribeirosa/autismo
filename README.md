@@ -1,7 +1,7 @@
 # Será que é Autismo?
 
 <p align="center">
-  <img src="img/primeia2.jpeg" alt="Imagem do projeto Será que é Autismo" width="720">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Autism_spectrum_infinity_awareness_symbol.svg/960px-Autism_spectrum_infinity_awareness_symbol.svg.png" alt="Símbolo colorido de infinito do espectro autista" width="520">
 </p>
 
 Site informativo criado por **Vitor Hugo Ribeiro Sá** para auxiliar famílias em uma triagem inicial de sinais relacionados ao Transtorno do Espectro Autista (TEA).
@@ -29,6 +29,10 @@ O projeto apresenta informações sobre autismo, perguntas frequentes, serviços
 ## Como abrir
 
 Abra o arquivo `index.html` no navegador ou publique o repositório usando GitHub Pages.
+
+## Imagem
+
+Imagem do símbolo de infinito do espectro autista disponível no [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Autism_spectrum_infinity_awareness_symbol.svg).
 
 ## Observação importante
 
